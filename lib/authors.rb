@@ -34,4 +34,22 @@ class Author
     @name = new_name['name']
     DB.exec("UPDATE authors SET name = '#{@name}' WHERE id = #{self.id};")
   end
+
+  def books
+    books = []
+    results = DB.exec("select books.* from
+                       authors join authors_and_book on (authors.id = authors_and_book.authors_id)
+                       join books on (authors_and_book.books_id = books.id)
+                       where authors.id = #{self.id}")
+    results.each do |result|
+      id = result['id'].to_i
+      title = result['title']
+      books << Book.new({'title' => title, 'id' => id})
+    end
+    books
+  end
+
+  def add_book(books_id)
+    DB.exec("INSERT INTO authors_and_book (authors_id, books_id) VALUES (#{self.id}, #{books_id});")
+  end
 end
