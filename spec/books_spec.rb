@@ -23,4 +23,11 @@ describe 'Book' do
     new_book.delete
     expect(Book.all).to eq []
   end
+
+  it 'updates book information' do
+    new_book = Book.new({'title' => 'To The Lighthouse', 'id' => 1})
+    new_book.save
+    new_book.update({'title' => 'Mrs. Dalloway'})
+    expect(new_book.title).to eq 'Mrs. Dalloway'
+  end
 end
