@@ -29,4 +29,9 @@ class Author
   def delete
     DB.exec("DELETE FROM authors WHERE id = #{self.id}")
   end
+
+  def update(new_name)
+    @name = new_name['name']
+    DB.exec("UPDATE authors SET name = '#{@name}' WHERE id = #{self.id};")
+  end
 end

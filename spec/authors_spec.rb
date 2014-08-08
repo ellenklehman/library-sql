@@ -30,4 +30,11 @@ describe 'Author' do
     new_author.delete
     expect(Author.all).to eq []
   end
+
+  it 'updates an authors information' do
+    new_author = Author.new({'name' => 'Socrates', 'id' => 2})
+    new_author.save
+    new_author.update({'name' => 'Aristotle'})
+    expect(new_author.name).to eq 'Aristotle'
+  end
 end
