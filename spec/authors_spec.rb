@@ -23,4 +23,11 @@ describe 'Author' do
     new_author_two = Author.new({'name' => 'Socrates', 'id' => 3})
     expect(new_author).to eq new_author_two
   end
+
+  it 'deletes authors from the authors array' do
+    new_author = Author.new({'name' => 'Socrates', 'id' => 2})
+    new_author.save
+    new_author.delete
+    expect(Author.all).to eq []
+  end
 end

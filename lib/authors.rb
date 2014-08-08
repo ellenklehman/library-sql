@@ -18,10 +18,15 @@ class Author
   end
 
   def save
-    DB.exec("INSERT INTO authors (name, id) VALUES ('#{@name}', '#{@id}')")
+    result = DB.exec("INSERT INTO authors (name, id) VALUES ('#{@name}', #{@id}) RETURNING id;")
+    @id = result.first['id'].to_i
   end
 
   def ==(another_book)
     self.name == another_book.name
+  end
+
+  def delete
+    DB.exec("DELETE FROM authors WHERE id = #{self.id}")
   end
 end
