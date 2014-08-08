@@ -1,5 +1,6 @@
 require 'rspec'
 require 'authors'
+require 'books'
 require 'pg'
 
 DB = PG.connect({:dbname => 'library_database'})
