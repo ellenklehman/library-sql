@@ -27,7 +27,7 @@ class Author
   end
 
   def delete
-    DB.exec("DELETE FROM authors WHERE id = #{self.id}")
+    DB.exec("DELETE FROM authors WHERE id = #{self.id};")
   end
 
   def update(new_name)

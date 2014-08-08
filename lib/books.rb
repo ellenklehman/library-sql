@@ -25,4 +25,8 @@ class Book
   def ==(another_book)
     self.title == another_book.title
   end
+
+  def delete
+    DB.exec("DELETE FROM books WHERE id = #{self.id};")
+  end
 end

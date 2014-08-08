@@ -16,4 +16,11 @@ describe 'Book' do
     new_book.save
     expect(Book.all).to eq [new_book]
   end
+
+   it 'deletes books from the array of books' do
+    new_book = Book.new({'title' => 'To The Lighthouse', 'id' => 1})
+    new_book.save
+    new_book.delete
+    expect(Book.all).to eq []
+  end
 end
