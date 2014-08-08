@@ -30,4 +30,19 @@ describe 'Book' do
     new_book.update({'title' => 'Mrs. Dalloway'})
     expect(new_book.title).to eq 'Mrs. Dalloway'
   end
+
+  it 'attributes an author to a book' do
+    new_book = Book.new({'title' => 'To The Lighthouse', 'id' => 1})
+    new_book.save
+    new_author = Author.new({'name' => 'Virginia Woolf', 'id' => 1})
+    new_author.save
+    new_book.add_author(new_author.id)
+    expect(new_book.authors).to eq [new_author]
+  end
+
+  it 'begins with an empty array to store all of the authors' do
+    new_book = Book.new({'title' => 'To The Lighthouse', 'id' => 1})
+    new_book.save
+    expect(new_book.authors).to eq []
+  end
 end
