@@ -10,4 +10,10 @@ describe 'Book' do
     new_book = Book.new({'title' => 'To The Lighthouse', 'id' => 1})
     expect(Book.all).to eq []
   end
+
+  it 'saves all instances of book to the array' do
+    new_book = Book.new({'title' => 'To The Lighthouse', 'id' => 1})
+    new_book.save
+    expect(Book.all).to eq [new_book]
+  end
 end
