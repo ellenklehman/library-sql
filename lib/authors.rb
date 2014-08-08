@@ -5,4 +5,8 @@ class Author
     @name = attributes['name']
     @id = attributes['id']
   end
+
+  def Author.all
+    []
+  end
 end
